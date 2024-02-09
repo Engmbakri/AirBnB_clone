@@ -115,7 +115,7 @@ class HBNBCommand(cmd.Cmd):
                 pass
             else:
                 
-            # you have to setattr for attr_name and attr_value .
+            # you have to setattr for attr_name and attr_value.
             # both name and value doesn't update 'id' 'create_at' and 'update_at'
 
 

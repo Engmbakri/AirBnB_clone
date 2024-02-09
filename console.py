@@ -102,27 +102,42 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif arg[0] not in self.valid_classes:
             print("** class doesn't exist **")
-        elif len(arg) == 1:
+        elif len(arg) <  2:
             print("** instance id missing **")
-        elif len(arg) == 2 and arg[1] != self.valid_classes:
-            print("** no instance found **")
-        elif len(arg) == 2 and arg[1] == self.valid_classes:
-            print("** attribute name missing **")
-        elif len(arg) == 3 and arg[:1] == self.valid_classes:
-            print("** value missing **")
-        if len(arg) == 4:
-            if arg[2] in ['id', 'created_at', 'updated_at']:
-                pass
+        else:
+            objects = storage.all()
+            key = "{}.{}".format(arg[0], arg[1])
+            if key not in objects:
+                print("**No Instance Found**")
+            elif len(arg) < 3:
+                print("**Attibute Name Missing**")
+            elif len(arg) < 4:
+                print("**Attribute Value Missing**")
+
+            attr_name = arg[2]
+            attr_value = arg[3]
+            
+            # Handle string arguments with spaces between double quotes
+            if attr_value.startswith('"') and attr_value.endswith('"'):
+                attr_value = attr_value[1:-1]
+            # Convert attribute value to the appropriate type
+            try:
+                if '.' in attr_value:
+                    attr_value = float(attr_value)
+                else:
+                    attr_value = int(attr_value)
+            except ValueError:
+                pass  # Handle the case when casting fails (e.g., non-numeric value)
+
+            # Update the attribute if it's a simple type (string, integer, or float)
+            if isinstance(attr_value, (str, int, float)):
+                obj = objects[key]
+                setattr(obj, attr_name, attr_value)
+                obj.save()
+                print("Attribute updated successfully!")
             else:
+                print("Error: Invalid attribute value type. Only simple types (string, integer, and float) are allowed.")
                 
-            # you have to setattr for attr_name and attr_value.
-            # both name and value doesn't update 'id' 'create_at' and 'update_at'
-
-
-            # Also Only “simple” arguments can be updated: string, integer and float. 
-            # You can assume nobody will try to update list of ids or datetime
-        storage.save()
-
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

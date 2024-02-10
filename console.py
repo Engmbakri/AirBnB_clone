@@ -22,7 +22,8 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
 
-    valid_classes = ["BaseModel", "User", "Place", "State", "City", "Amenity", "Review"]
+    valid_classes = ["BaseModel", "User", "Place", "State", "City",
+                     "Amenity", "Review"]
 
     def do_EOF(self, line):
         """EOF command to exit the program"""
@@ -94,6 +95,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Print the string representation of all instances or a specific class.
         """
+
         objects = storage.all()
         arg = args.split()
 

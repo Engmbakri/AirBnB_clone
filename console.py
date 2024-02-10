@@ -5,6 +5,7 @@ import json
 from models import storage
 from models.base_model import BaseModel
 
+
 class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
@@ -19,24 +20,24 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """Quit command to exit the program"""
         return True
-            
+
     def emptyline(self):
         """execute nothing when empty line"""
         pass
-    
+
     def do_create(self, args):
         """create a new method type <create> <class name>"""
         arg = args.split()
         if not arg:
             print("** class name missing **")
             return
-        
+
         if arg[0] not in self.valid_classes:
             print("** class doesn't exist **")
         else:
-            print(eval(arg[0])().id)   
+            print(eval(arg[0])().id)
         storage.save()
-    
+
     def do_show(self, args):
         """
         Prints the string representation based on the class name and id.
@@ -57,9 +58,9 @@ class HBNBCommand(cmd.Cmd):
                 print(objects[key])
             else:
                 print("** no instance found **")
-    
+
     def do_destroy(self, args):
-        """Deletes an instance based on the class name and id 
+        """Deletes an instance based on the class name and id
         syntax destory <class_name> <id>"""
         arg = args.split()
         if len(arg) == 0:
@@ -95,14 +96,15 @@ class HBNBCommand(cmd.Cmd):
                     print(str(value))
 
     def do_update(self, args):
-        """Updates an instance based on the class name and id by adding or updating attribute
+        """Updates an instance based on the class name
+        and id by adding or updating attribute
         Usage: update <class name> <id> <attribute name> <attribute value> """
         arg = args.split()
         if len(args) == 0:
             print("** class name missing **")
         elif arg[0] not in self.valid_classes:
             print("** class doesn't exist **")
-        elif len(arg) <  2:
+        elif len(arg) < 2:
             print("** instance id missing **")
         else:
             objects = storage.all()
@@ -116,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
 
             attr_name = arg[2]
             attr_value = arg[3]
-            
+
             # Handle string arguments with spaces between double quotes
             if attr_value.startswith('"') and attr_value.endswith('"'):
                 attr_value = attr_value[1:-1]
@@ -127,17 +129,18 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     attr_value = int(attr_value)
             except ValueError:
-                pass  # Handle the case when casting fails (e.g., non-numeric value)
+                pass
 
-            # Update the attribute if it's a simple type (string, integer, or float)
+            # Update the attribute if it's a simple type
             if isinstance(attr_value, (str, int, float)):
                 obj = objects[key]
                 setattr(obj, attr_name, attr_value)
                 obj.save()
                 print("Attribute updated successfully!")
             else:
-                print("Error: Invalid attribute value type. Only simple types (string, integer, and float) are allowed.")
-                
+                print("Error: Invalid attribute value type.
+                      Only(string, integer, and float) are allowed.")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

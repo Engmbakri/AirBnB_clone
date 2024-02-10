@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+The Console Module
+"""
 
 import cmd
 import json
@@ -7,6 +10,9 @@ from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
+    """
+    HBNB Console Class
+    """
 
     prompt = "(hbnb) "
 

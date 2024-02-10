@@ -138,8 +138,8 @@ class HBNBCommand(cmd.Cmd):
                 obj.save()
                 print("Attribute updated successfully!")
             else:
-                print("Error: Invalid attribute value type.
-                      Only(string, integer, and float) are allowed.")
+                print("Invalid attribute value type."
+                      "Only string, integer, and float are allowed.")
 
 
 if __name__ == "__main__":

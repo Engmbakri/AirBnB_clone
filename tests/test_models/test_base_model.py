@@ -84,6 +84,6 @@ class TestBaseModelStr(unittest.TestCase):
 
         self.assertEqual(str(base_model), expected_str)
 
+
 if __name__ == '__main__':
     unittest.main()
-

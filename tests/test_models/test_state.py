@@ -61,7 +61,7 @@ class TestState_instantiation(unittest.TestCase):
         state.created_at = state.updated_at = mydate
         state_str = state.__str__()
         self.assertIn("[State] (666666)", state_str)
-g       self.assertIn("'id': '666666'", state_str)
+        self.assertIn("'id': '666666'", state_str)
         self.assertIn("'created_at': " + mydate_repr, state_str)
         self.assertIn("'updated_at': " + mydate_repr, state_str)
 

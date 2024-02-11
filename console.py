@@ -115,7 +115,7 @@ class HBNBCommand(cmd.Cmd):
         Usage: update <class name> <id> <attribute name> <attribute value> """
 
         arg = args.split()
-        if len(args) == 0:
+        if len(arg) == 0:
             print("** class name missing **")
         elif arg[0] not in self.valid_classes:
             print("** class doesn't exist **")

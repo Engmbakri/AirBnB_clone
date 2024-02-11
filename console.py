@@ -113,6 +113,7 @@ class HBNBCommand(cmd.Cmd):
         """Updates an instance based on the class name
         and id by adding or updating attribute
         Usage: update <class name> <id> <attribute name> <attribute value> """
+
         arg = args.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -145,7 +146,7 @@ class HBNBCommand(cmd.Cmd):
             except ValueError:
                 pass
 
-            # Update the attribute if it's a simple type
+            # Update the attribute if it's a simple typ
             if isinstance(attr_value, (str, int, float)):
                 obj = objects[key]
                 setattr(obj, attr_name, attr_value)

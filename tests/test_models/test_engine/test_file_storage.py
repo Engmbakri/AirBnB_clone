@@ -1,3 +1,8 @@
+#!/usr/bin/python3
+"""
+Module for FilStorage unittest
+"""
+import models
 import unittest
 import os
 import json
@@ -8,7 +13,7 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.city import City
-from models.file_storage import FileStorage
+from models.engine.file_storage import FileStorage
 
 
 class TestFileStorage(unittest.TestCase):
@@ -21,14 +26,9 @@ class TestFileStorage(unittest.TestCase):
             os.remove(self.file_path)
 
     def test_new(self):
-        # Create an instance of BaseModel
-        base_model = BaseModel()
-
-        # Add the instance to the storage
-        self.storage.new(base_model)
-
-        # Check if the instance is in the storage
-        self.assertIn(f"BaseModel.{base_model.id}", self.storage.all())
+        basemodel = BaseModel()
+        self.storage.new(basemodel)
+        self.assertIn(f"BaseModel.{basemodel.id}", self.storage.all())
 
     def test_all(self):
         # Check if all method returns a dictionary

@@ -71,10 +71,10 @@ class TestUser_instantiation(unittest.TestCase):
         print(user_one_str)
 
         expected_str = (
-                "(User) (777777), {'id': '777777', "
-                "'created_at': datetime.datetime(2024, 2, 10, 18, 30, 53, 530057), "
-                "'updated_at': datetime.datetime(2024, 2, 10, 18, 30, 53, 530057)}"
-                )
+            "(User) (777777), {'id': '777777', "
+            "'created_at': datetime.datetime(2024, 2, 10, 18, 30, 53, 530057), "
+            "'updated_at': datetime.datetime(2024, 2, 10, 18, 30, 53, 530057)}"
+        )
         self.assertIn(expected_str, user_one_str)
 
     def test_args_unused(self):

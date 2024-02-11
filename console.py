@@ -151,7 +151,6 @@ class HBNBCommand(cmd.Cmd):
                 obj = objects[key]
                 setattr(obj, attr_name, attr_value)
                 obj.save()
-                print("Attribute updated successfully!")
             else:
                 print("Invalid attribute value type."
                       "Only string, integer, and float are allowed.")

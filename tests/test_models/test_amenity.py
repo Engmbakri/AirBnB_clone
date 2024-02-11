@@ -90,7 +90,8 @@ class TestAmenity_instantiation(unittest.TestCase):
         """
         my_date = datetime.today()
         my_date_iso = my_date.isoformat()
-        amenity_one = Amenity(id="777", created_at=my_date_iso, updated_at=my_date_iso)
+        Am = Amenity(id="777", created_at=my_date_iso, updated_at=my_date_iso)
+        amenity_one = Am
         self.assertEqual(amenity_one.id, "777")
         self.assertEqual(amenity_one.created_at, my_date)
         self.assertEqual(amenity_one.updated_at, my_date)
@@ -98,6 +99,7 @@ class TestAmenity_instantiation(unittest.TestCase):
     def test_instantiation_with_None_kwargs(self):
         with self.assertRaises(TypeError):
             Amenity(id=None, created_at=None, updated_at=None)
+
 
 class TestAmenity_save(unittest.TestCase):
     """

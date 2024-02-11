@@ -26,34 +26,25 @@ class TestFileStorage(unittest.TestCase):
             os.remove(self.file_path)
 
     def test_new(self):
+        """"test new add basemodel"""
         basemodel = BaseModel()
         self.storage.new(basemodel)
         self.assertIn(f"BaseModel.{basemodel.id}", self.storage.all())
 
     def test_all(self):
-        # Check if all method returns a dictionary
+        """ Check if all method returns a dictionary"""
         self.assertIsInstance(self.storage.all(), dict)
 
     def test_save_reload(self):
-        # Create instances of BaseModel and User
+        """ Create instances of BaseModl"""
         base_model = BaseModel()
         user = User()
-
-        # Add instances to the storage
         self.storage.new(base_model)
         self.storage.new(user)
-
-        # Save the data to the file
         self.storage.save()
-
-        # Reload the data from the file
         new_storage = FileStorage()
         new_storage.reload()
-
-        # Check if the reloaded storage has the same data
         self.assertEqual(self.storage.all(), new_storage.all())
-
-        # Check if the reloaded storage has the instances
         self.assertIn(f"BaseModel.{base_model.id}", new_storage.all())
         self.assertIn(f"User.{user.id}", new_storage.all())
 

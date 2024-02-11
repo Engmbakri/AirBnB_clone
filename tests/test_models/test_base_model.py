@@ -5,6 +5,7 @@ BaseModel Unittest
 import os
 import unittest
 from models.base_model import BaseModel
+from datetime import datetime
 
 
 class TestBasemodel(unittest.TestCase):
@@ -61,17 +62,15 @@ class TestBasemodel(unittest.TestCase):
         to_dict Method Test
         """
         mymodel = BaseModel()
-
         mymodel_dict = mymodel.to_dict()
-
         self.assertIsInstance(mymodel_dict, dict)
-
         self.assertEqual(mymodel_dict["__class__"], 'BaseModel')
         self.assertEqual(mymodel_dict['id'], mymodel.id)
         self.assertEqual(mymodel_dict['created_at'],
                          mymodel.created_at.isoformat())
-        self.assertEqual(mymodel_dict["updated_at"],
-                         mymodel.created_at.isoformat())
+        updated_at_datetime = datetime.strptime(mymodel_dict["updated_at"],
+                                                "%Y-%m-%dT%H:%M:%S.%f")
+        self.assertEqual(updated_at_datetime, mymodel.updated_at)
 
     def test_str(self):
         """

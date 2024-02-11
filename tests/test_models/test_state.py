@@ -65,7 +65,6 @@ class TestState_instantiation(unittest.TestCase):
         self.assertIn("'created_at': " + mydate_repr, state_str)
         self.assertIn("'updated_at': " + mydate_repr, state_str)
 
-
     def test_args_unused(self):
         state = State(None)
         self.assertNotIn(None, state.__dict__.values())

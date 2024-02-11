@@ -11,7 +11,7 @@ import models
 class BaseModel:
     """
     The base model for other classes in the application. It includes methods
-    for initializing, saving, converting to a dictionary,
+    for initializing, saving, converting to a dict,
     and providing a string representation.
     """
     def __init__(self, *args, **kwargs):

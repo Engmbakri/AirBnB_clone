@@ -30,7 +30,7 @@ class TestFileStorage(unittest.TestCase):
     def test_all(self):
         self.assertIsInstance(self.storage.all(), dict)
 
-    def test_save_reload(self):
+    def test_save_red(self):
         base_model = BaseModel()
         user = User()
 
